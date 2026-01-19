@@ -1631,12 +1631,12 @@
           </select>
         </div>
         <div class="form-group" id="givenFromGroup">
-          <label>Given From</label>
+          <label id="sourceLabel">Source</label>
           <select id="givenFrom">
             <option value="">Select Source</option>
             <option value="Accounts">Accounts</option>
-            <option value="Department">Team Lead</option>
-            <option value="Department">Manager</option>
+            <option value="Department">Department</option>
+            <option value="Personal">Personal</option>
             <option value="Other">Other</option>
           </select>
         </div>
@@ -1913,13 +1913,12 @@
 
     function toggleGivenFrom() {
       const type = document.getElementById('type').value;
-      const givenFromGroup = document.getElementById('givenFromGroup');
-      if (givenFromGroup) {
+      const sourceLabel = document.getElementById('sourceLabel');
+      if (sourceLabel) {
         if (type === 'Expense') {
-          givenFromGroup.style.display = 'none';
-          document.getElementById('givenFrom').value = '';
+          sourceLabel.textContent = 'Expense From (Source)';
         } else {
-          givenFromGroup.style.display = 'block';
+          sourceLabel.textContent = 'Given From (Source)';
         }
       }
     }
@@ -2051,11 +2050,12 @@
         const date = formatDate(r[1]);
         const type = r[2] || '';
         const desc = (r[4] || '').toLowerCase();
+        const source = (r[3] || '').toLowerCase();
 
         if (fromDate && date < fromDate) return false;
         if (toDate && date > toDate) return false;
         if (typeFilter && type !== typeFilter) return false;
-        if (searchText && !desc.includes(searchText)) return false;
+        if (searchText && !desc.includes(searchText) && !source.includes(searchText)) return false;
         return true;
       });
 
@@ -2451,6 +2451,3 @@
 </body>
 
 </html>
-
-
-

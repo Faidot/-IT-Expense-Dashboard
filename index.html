@@ -2059,6 +2059,13 @@
         return true;
       });
 
+      // Sort by date descending by default (latest first)
+      data.sort((a, b) => {
+        const dateA = formatDate(a[1]);
+        const dateB = formatDate(b[1]);
+        return dateB.localeCompare(dateA);
+      });
+
       currentData = data;
       currentPage = 1;
 

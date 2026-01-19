@@ -16,8 +16,7 @@ A modern, professional expense tracking application with role-based access, real
 ### 👥 Role-Based Authentication
 | Role | Password | Access |
 |------|----------|--------|
-| **Admin** | `ABC!123` | Full access (add, edit, delete, backup, restore) |
-| **Viewer** | `password123` | Read-only (view, export, filter, search) |
+
 
 ### 🔐 Session Management
 - **1-Hour Session Timeout** - Auto-logout after 60 minutes
@@ -120,3 +119,4 @@ const API = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
 ---
 
 Made with ❤️ for efficient expense management
+

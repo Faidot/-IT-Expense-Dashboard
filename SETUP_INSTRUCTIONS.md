@@ -57,12 +57,6 @@ Clear browser localStorage first:
 2. Clear all entries
 3. Refresh the page
 
-### Login Credentials
-
-| Role | Password | Access |
-|------|----------|--------|
-| **Admin** | `ABC!123` | Full access |
-| **Viewer** | `password123` | Read-only |
 
 ---
 

@@ -7,9 +7,35 @@
   <title>IT Expense Dashboard</title>
   <!-- Online Favicon -->
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/10106/10106199.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Setup: Outfit (Modern & Techy) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons: Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
   <style>
+    :root {
+      /* Primary Brand Color: Vibrant Orange */
+      --primary: #FF6B01;
+      --primary-dark: #e05e00;
+      /* Secondary/Surface Colors: Dark Gray */
+      --surface-dark: #3C3C3C;
+      --surface-darker: #2a2a2a;
+      
+      --bg-body: #f8f9fa;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      
+      --gradient-sidebar: linear-gradient(180deg, var(--surface-darker) 0%, var(--surface-dark) 100%);
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -17,9 +43,9 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f0f4f8;
-      color: #1e293b;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
     }
@@ -31,11 +57,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      background: var(--gradient-sidebar);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 3000;
+      backdrop-filter: blur(10px);
     }
 
     .login-container.hidden {
@@ -43,7 +70,7 @@
     }
 
     .login-box {
-      background: white;
+      background: var(--bg-card);
       padding: 48px;
       border-radius: 24px;
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
@@ -62,18 +89,20 @@
     .login-logo-icon {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      background: var(--gradient-primary);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 28px;
+      color: white;
     }
 
     .login-logo-text {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--surface-dark);
+      letter-spacing: -0.5px;
     }
 
     .login-form-group {
@@ -85,35 +114,35 @@
       font-weight: 600;
       font-size: 14px;
       margin-bottom: 8px;
-      color: #475569;
+      color: var(--text-muted);
     }
 
     .login-form-group input {
       width: 100%;
       padding: 14px 16px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid var(--border-color);
       border-radius: 12px;
       font-size: 15px;
       font-family: inherit;
       transition: all 0.3s;
-      background: #f8fafc;
+      background: var(--bg-body);
     }
 
     .login-form-group input:focus {
       outline: none;
-      border-color: #3b82f6;
-      background: white;
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+      border-color: var(--primary);
+      background: var(--bg-card);
+      box-shadow: 0 0 0 4px rgba(255, 107, 1, 0.15);
     }
 
     .login-btn {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      background: var(--gradient-primary);
       color: white;
       border: none;
       border-radius: 12px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 16px;
       cursor: pointer;
       transition: all 0.3s;
@@ -121,7 +150,7 @@
 
     .login-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 8px 25px rgba(255, 107, 1, 0.3);
     }
 
     .login-error {
@@ -142,7 +171,7 @@
     /* ==================== SIDEBAR ==================== */
     .sidebar {
       width: 260px;
-      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      background: var(--gradient-sidebar);
       min-height: 100vh;
       padding: 24px 16px;
       display: flex;
@@ -164,18 +193,20 @@
     .sidebar-logo-icon {
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      background: var(--gradient-primary);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 24px;
+      color: white;
     }
 
     .sidebar-logo-text {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       color: white;
+      letter-spacing: -0.5px;
     }
 
     .sidebar-nav {
@@ -198,25 +229,25 @@
     }
 
     .nav-item:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
       color: white;
     }
 
     .nav-item.active {
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      background: var(--gradient-primary);
       color: white;
-      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 107, 1, 0.3);
     }
 
     .nav-item-icon {
-      font-size: 20px;
+      font-size: 22px;
       width: 24px;
       text-align: center;
     }
 
     .sidebar-footer {
       padding: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .user-info {
@@ -228,12 +259,12 @@
     .user-avatar {
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: var(--gradient-primary);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 22px;
       color: white;
       font-weight: 700;
     }
@@ -279,21 +310,22 @@
 
     /* ==================== TOP HEADER ==================== */
     .top-header {
-      background: white;
+      background: var(--bg-card);
       padding: 20px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 50;
     }
 
     .page-title {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--surface-dark);
+      letter-spacing: -0.5px;
     }
 
     .header-actions {
@@ -305,29 +337,37 @@
     .search-box {
       display: flex;
       align-items: center;
-      background: #f1f5f9;
+      background: var(--bg-body);
       border-radius: 12px;
-      padding: 10px 16px;
+      padding: 12px 16px;
       gap: 10px;
       width: 300px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255,107,1,0.1);
     }
 
     .search-box input {
       border: none;
       background: none;
       outline: none;
-      font-size: 14px;
+      font-size: 15px;
       font-family: inherit;
       flex: 1;
-      color: #1e293b;
+      color: var(--text-main);
     }
 
     .search-box input::placeholder {
-      color: #94a3b8;
+      color: var(--text-muted);
     }
 
     .search-icon {
-      color: #94a3b8;
+      color: var(--text-muted);
+      font-size: 20px;
     }
 
     .add-btn {
@@ -335,19 +375,19 @@
       align-items: center;
       gap: 8px;
       padding: 12px 20px;
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      background: var(--gradient-primary);
       color: white;
       border: none;
       border-radius: 12px;
-      font-weight: 600;
-      font-size: 14px;
+      font-weight: 700;
+      font-size: 15px;
       cursor: pointer;
       transition: all 0.3s;
     }
 
     .add-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 8px 25px rgba(255, 107, 1, 0.4);
     }
 
     /* ==================== DASHBOARD CONTAINER ==================== */
@@ -371,25 +411,25 @@
     }
 
     .filter-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: #64748b;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
     }
 
     .filter-input {
       padding: 10px 14px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid var(--border-color);
       border-radius: 10px;
       font-size: 14px;
       font-family: inherit;
-      background: white;
-      color: #1e293b;
+      background: var(--bg-card);
+      color: var(--text-main);
       transition: all 0.2s;
     }
 
     .filter-input:focus {
       outline: none;
-      border-color: #3b82f6;
+      border-color: var(--primary);
     }
 
     .action-buttons {
@@ -421,12 +461,12 @@
     }
 
     .btn-backup {
-      background: #3b82f6;
+      background: var(--surface-dark);
       color: white;
     }
 
     .btn-restore {
-      background: #8b5cf6;
+      background: var(--primary);
       color: white;
     }
 
@@ -436,7 +476,7 @@
     }
 
     .btn-settings {
-      background: #64748b;
+      background: var(--text-muted);
       color: white;
     }
 
@@ -481,11 +521,11 @@
     }
 
     .stat-card.balance::before {
-      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      background: var(--gradient-primary);
     }
 
     .stat-card.entries::before {
-      background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+      background: var(--gradient-sidebar);
     }
 
     .stat-header {
@@ -497,8 +537,8 @@
 
     .stat-label {
       font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
+      font-weight: 700;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -510,30 +550,35 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 24px;
     }
 
     .stat-card.income .stat-icon {
       background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
     }
 
     .stat-card.expense .stat-icon {
       background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
     }
 
     .stat-card.balance .stat-icon {
-      background: rgba(59, 130, 246, 0.1);
+      background: rgba(255, 107, 1, 0.1);
+      color: var(--primary);
     }
 
     .stat-card.entries .stat-icon {
-      background: rgba(139, 92, 246, 0.1);
+      background: rgba(60, 60, 60, 0.1);
+      color: var(--surface-dark);
     }
 
     .stat-value {
       font-size: 32px;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--surface-dark);
       margin-bottom: 8px;
+      letter-spacing: -1px;
     }
 
     .stat-card.income .stat-value {
@@ -545,23 +590,23 @@
     }
 
     .stat-card.balance .stat-value {
-      color: #3b82f6;
+      color: var(--primary);
     }
 
     .stat-card.entries .stat-value {
-      color: #8b5cf6;
+      color: var(--surface-dark);
     }
 
     .stat-subtitle {
-      font-size: 12px;
-      color: #94a3b8;
+      font-size: 13px;
+      color: var(--text-muted);
     }
 
     .stat-trend {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       padding: 4px 8px;
       border-radius: 6px;
@@ -580,7 +625,7 @@
 
     /* ==================== SUMMARY SECTION ==================== */
     .summary-section {
-      background: white;
+      background: var(--bg-card);
       border-radius: 20px;
       padding: 28px;
       margin-bottom: 32px;
@@ -597,7 +642,7 @@
     .section-title {
       font-size: 18px;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--surface-dark);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -623,28 +668,30 @@
     }
 
     .summary-icon {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: var(--primary);
     }
 
     .summary-label {
-      font-size: 11px;
-      color: #64748b;
-      font-weight: 500;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 6px;
     }
 
     .summary-value {
-      font-size: 20px;
-      font-weight: 700;
-      color: #0f172a;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--surface-dark);
+      letter-spacing: -0.5px;
     }
 
     .summary-sub {
-      font-size: 11px;
-      color: #94a3b8;
+      font-size: 12px;
+      color: var(--text-muted);
       margin-top: 4px;
     }
 
@@ -657,16 +704,16 @@
     }
 
     .chart-card {
-      background: white;
+      background: var(--bg-card);
       border-radius: 20px;
       padding: 28px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
 
     .chart-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--surface-dark);
       margin-bottom: 20px;
     }
 
@@ -677,7 +724,7 @@
 
     /* ==================== DATA TABLE ==================== */
     .data-section {
-      background: white;
+      background: var(--bg-card);
       border-radius: 20px;
       padding: 28px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -700,18 +747,18 @@
     }
 
     thead {
-      background: #f8fafc;
+      background: var(--bg-body);
     }
 
     th {
       padding: 14px 16px;
       text-align: left;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
-      color: #64748b;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      border-bottom: 2px solid #e2e8f0;
+      border-bottom: 2px solid var(--border-color);
     }
 
     th.sortable {
@@ -720,7 +767,7 @@
     }
 
     th.sortable:hover {
-      color: #3b82f6;
+      color: var(--primary);
     }
 
     th.sortable::after {
@@ -730,9 +777,10 @@
 
     td {
       padding: 16px;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 14px;
-      color: #334155;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
     }
 
     tbody tr {
@@ -740,15 +788,15 @@
     }
 
     tbody tr:hover {
-      background: #f8fafc;
+      background: var(--bg-body);
     }
 
     .type-badge {
       display: inline-block;
       padding: 6px 12px;
       border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
     }
 
     .type-badge.income {
@@ -764,16 +812,16 @@
     .-badge {
       display: inline-block;
       padding: 4px 10px;
-      background: #e0f2fe;
-      color: #0284c7;
+      background: rgba(255, 107, 1, 0.1);
+      color: var(--primary-dark);
       border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .amount {
-      font-weight: 700;
-      font-size: 15px;
+      font-weight: 800;
+      font-size: 16px;
     }
 
     .amount.positive {
@@ -794,19 +842,22 @@
       padding: 8px 14px;
       border: none;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .edit-btn {
-      background: #e0f2fe;
-      color: #0284c7;
+      background: rgba(60, 60, 60, 0.05);
+      color: var(--surface-dark);
     }
 
     .edit-btn:hover {
-      background: #bae6fd;
+      background: rgba(60, 60, 60, 0.1);
     }
 
     .delete-btn {
@@ -819,37 +870,40 @@
     }
 
     .view-btn {
-      background: #f3e8ff;
-      color: #7c3aed;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 107, 1, 0.1);
+      color: var(--primary-dark);
       padding: 8px 14px;
       border: none;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .view-btn:hover {
-      background: #e9d5ff;
+      background: rgba(255, 107, 1, 0.2);
     }
 
     /* ==================== BILL UPLOAD ==================== */
     .bill-upload-zone {
-      border: 2px dashed #cbd5e1;
+      border: 2px dashed var(--border-color);
       border-radius: 14px;
       padding: 20px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
-      background: #f8fafc;
+      background: var(--bg-body);
       position: relative;
     }
 
     .bill-upload-zone:hover,
     .bill-upload-zone.dragover {
-      border-color: #3b82f6;
-      background: #eff6ff;
+      border-color: var(--primary);
+      background: rgba(255, 107, 1, 0.05);
     }
 
     .bill-upload-zone input[type="file"] {
@@ -930,17 +984,18 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      background: #f3e8ff;
-      color: #7c3aed;
+      background: rgba(255, 107, 1, 0.1);
+      color: var(--primary-dark);
       border-radius: 6px;
-      padding: 3px 9px;
-      font-size: 11px;
+      padding: 4px 10px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s;
     }
 
     .bill-badge:hover {
-      background: #e9d5ff;
+      background: rgba(255, 107, 1, 0.2);
     }
 
     /* ==================== VIEW ENTRY MODAL ==================== */
@@ -963,7 +1018,7 @@
     }
 
     .view-modal-content {
-      background: white;
+      background: var(--bg-card);
       border-radius: 24px;
       width: 100%;
       max-width: 700px;
@@ -975,35 +1030,37 @@
 
     .view-modal-header {
       padding: 22px 28px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .view-modal-title {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--surface-dark);
+      letter-spacing: -0.5px;
     }
 
     .view-modal-close {
-      background: #f1f5f9;
+      background: var(--bg-body);
       border: none;
       border-radius: 10px;
       width: 36px;
       height: 36px;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #64748b;
+      color: var(--text-muted);
       transition: all 0.2s;
     }
 
     .view-modal-close:hover {
-      background: #e2e8f0;
+      background: rgba(255, 107, 1, 0.1);
+      color: var(--primary);
     }
 
     .view-entry-details {
@@ -1011,28 +1068,28 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid var(--bg-body);
     }
 
     .view-detail-item {
-      background: #f8fafc;
+      background: var(--bg-body);
       border-radius: 12px;
       padding: 14px 16px;
     }
 
     .view-detail-label {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      color: #94a3b8;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 4px;
     }
 
     .view-detail-value {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
-      color: #0f172a;
+      color: var(--text-main);
     }
 
     .view-bills-section {
@@ -1040,9 +1097,9 @@
     }
 
     .view-bills-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--surface-dark);
       margin-bottom: 16px;
       display: flex;
       align-items: center;
@@ -1056,7 +1113,7 @@
     }
 
     .view-bill-card {
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-color);
       border-radius: 14px;
       overflow: hidden;
       display: flex;
@@ -1065,8 +1122,9 @@
     }
 
     .view-bill-card:hover {
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(255, 107, 1, 0.15);
       transform: translateY(-2px);
+      border-color: var(--primary);
     }
 
     .view-bill-card img {
@@ -1080,12 +1138,12 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #f8fafc;
+      background: var(--bg-body);
     }
 
     .view-bill-card-footer a {
-      color: #3b82f6;
-      font-size: 12px;
+      color: var(--primary);
+      font-size: 13px;
       font-weight: 600;
       text-decoration: none;
       flex: 1;
@@ -1117,47 +1175,32 @@
     }
 
     /* Dark mode additions */
-    body.dark-mode .view-modal-content {
-      background: #1e293b;
+    body.dark-mode {
+      --bg-body: #121212;
+      --bg-card: #222222;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #333333;
+      --surface-dark: #f8f9fa; /* Invert headers to light in dark mode */
     }
 
-    body.dark-mode .view-modal-header {
-      border-color: #334155;
-    }
-
-    body.dark-mode .view-modal-title {
-      color: #f1f5f9;
-    }
-
-    body.dark-mode .view-detail-item {
-      background: #334155;
-    }
-
-    body.dark-mode .view-detail-value {
-      color: #f1f5f9;
-    }
-
-    body.dark-mode .view-bills-title {
-      color: #f1f5f9;
-    }
-
-    body.dark-mode .view-bill-card {
-      border-color: #475569;
+    body.dark-mode .sidebar {
+      --gradient-sidebar: linear-gradient(180deg, #181818 0%, #121212 100%);
     }
 
     body.dark-mode .view-bill-card-footer {
-      background: #0f172a;
+      background: var(--bg-card);
     }
 
     body.dark-mode .bill-upload-zone {
-      background: #334155;
-      border-color: #475569;
+      background: var(--bg-card);
+      border-color: var(--border-color);
     }
 
     body.dark-mode .bill-preview-item {
-      background: #334155;
-      border-color: #475569;
-      color: #f1f5f9;
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--text-main);
     }
 
     /* ==================== PAGINATION ==================== */
@@ -1167,12 +1210,12 @@
       align-items: center;
       margin-top: 20px;
       padding-top: 20px;
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid var(--border-color);
     }
 
     .pagination-info {
-      font-size: 13px;
-      color: #64748b;
+      font-size: 14px;
+      color: var(--text-muted);
     }
 
     .pagination-controls {
@@ -1183,19 +1226,19 @@
 
     .page-btn {
       padding: 8px 14px;
-      border: 2px solid #e2e8f0;
-      background: white;
+      border: 2px solid var(--border-color);
+      background: var(--bg-card);
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      color: #64748b;
+      color: var(--text-muted);
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .page-btn:hover:not(:disabled) {
-      border-color: #3b82f6;
-      color: #3b82f6;
+      border-color: var(--primary);
+      color: var(--primary);
     }
 
     .page-btn:disabled {
@@ -1204,9 +1247,9 @@
     }
 
     .page-info {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      color: #1e293b;
+      color: var(--text-main);
       padding: 0 12px;
     }
 
@@ -1218,12 +1261,12 @@
 
     .entries-select select {
       padding: 8px 12px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid var(--border-color);
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 14px;
       font-family: inherit;
-      background: white;
-      color: #1e293b;
+      background: var(--bg-card);
+      color: var(--text-main);
       cursor: pointer;
     }
 
@@ -1247,7 +1290,7 @@
     }
 
     .modal-content {
-      background: white;
+      background: var(--bg-card);
       border-radius: 24px;
       width: 100%;
       max-width: 480px;
@@ -1269,10 +1312,11 @@
 
     .modal-header {
       padding: 24px 28px;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 20px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 22px;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--surface-dark);
+      letter-spacing: -0.5px;
     }
 
     .modal-body {
@@ -1287,7 +1331,7 @@
       display: block;
       font-size: 14px;
       font-weight: 600;
-      color: #475569;
+      color: var(--text-muted);
       margin-bottom: 8px;
     }
 
@@ -1295,38 +1339,39 @@
     .form-group select {
       width: 100%;
       padding: 12px 16px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid var(--border-color);
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 15px;
       font-family: inherit;
       transition: all 0.2s;
-      background: #f8fafc;
+      background: var(--bg-body);
+      color: var(--text-main);
     }
 
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
-      border-color: #3b82f6;
-      background: white;
+      border-color: var(--primary);
+      background: var(--bg-card);
     }
 
     .modal-actions {
       display: flex;
       gap: 12px;
       padding: 20px 28px;
-      border-top: 1px solid #e2e8f0;
-      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-body);
       border-radius: 0 0 24px 24px;
     }
 
     .btn-save {
       flex: 1;
       padding: 14px;
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      background: var(--gradient-primary);
       color: white;
       border: none;
       border-radius: 12px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
       cursor: pointer;
       transition: all 0.2s;
@@ -1334,7 +1379,7 @@
 
     .btn-save:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 8px 25px rgba(255, 107, 1, 0.4);
     }
 
     .btn-save-more {
@@ -1491,12 +1536,12 @@
 
     /* ==================== DARK MODE ==================== */
     body.dark-mode {
-      background: #0f172a;
-      color: #e2e8f0;
+      background: var(--bg-body);
+      color: var(--text-main);
     }
 
     body.dark-mode .main-content {
-      background: #0f172a;
+      background: var(--bg-body);
     }
 
     body.dark-mode .top-header {
@@ -1580,8 +1625,8 @@
     }
 
     body.dark-mode .modal-actions {
-      background: #0f172a;
-      border-color: #334155;
+      background: var(--surface-darker);
+      border-color: var(--border-color);
     }
 
     /* ==================== RESPONSIVE ==================== */
@@ -1710,7 +1755,7 @@
   <div class="login-container" id="loginContainer">
     <div class="login-box">
       <div class="login-logo">
-        <div class="login-logo-icon">💰</div>
+        <div class="login-logo-icon"><i class='bx bx-wallet'></i></div>
         <div class="login-logo-text">FINTRACK</div>
       </div>
       <div class="login-form-group">
@@ -1726,39 +1771,39 @@
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar" style="display: none;">
     <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">💰</div>
+      <div class="sidebar-logo-icon"><i class='bx bx-wallet'></i></div>
       <div class="sidebar-logo-text">FINTRACK</div>
     </div>
     <nav class="sidebar-nav">
       <div class="nav-item active">
-        <span class="nav-item-icon">📊</span>
+        <span class="nav-item-icon"><i class='bx bxs-dashboard'></i></span>
         <span>Dashboard</span>
       </div>
       <div class="nav-item" onclick="openModal()">
-        <span class="nav-item-icon">➕</span>
+        <span class="nav-item-icon"><i class='bx bx-plus-circle'></i></span>
         <span>Add Entry</span>
       </div>
       <div class="nav-item" onclick="printReport()">
-        <span class="nav-item-icon">🖨️</span>
+        <span class="nav-item-icon"><i class='bx bx-printer'></i></span>
         <span>Print Report</span>
       </div>
       <div class="nav-item" onclick="openSettingsModal()">
-        <span class="nav-item-icon">⚙️</span>
+        <span class="nav-item-icon"><i class='bx bx-cog'></i></span>
         <span>Settings</span>
       </div>
       <div class="nav-item" onclick="openViewModal(null,'nav')">
-        <span class="nav-item-icon">📎</span>
+        <span class="nav-item-icon"><i class='bx bx-paperclip'></i></span>
         <span>View Bills</span>
       </div>
     </nav>
     <div class="sidebar-footer">
       <div class="user-info">
-        <div class="user-avatar">IT</div>
+        <div class="user-avatar"><i class='bx bx-user'></i></div>
         <div class="user-details">
           <div class="user-name">IT Admin</div>
           <div class="user-role">Administrator</div>
         </div>
-        <button class="logout-btn" onclick="logout()" title="Logout">🚪</button>
+        <button class="logout-btn" onclick="logout()" title="Logout"><i class='bx bx-log-out'></i></button>
       </div>
     </div>
   </div>
@@ -1770,11 +1815,11 @@
       <h1 class="page-title">Dashboard</h1>
       <div class="header-actions">
         <div class="search-box">
-          <span class="search-icon">🔍</span>
+          <span class="search-icon"><i class='bx bx-search'></i></span>
           <input type="text" id="searchInput" placeholder="Search transactions...">
         </div>
         <button class="add-btn" onclick="openModal()">
-          <span>➕</span>
+          <i class='bx bx-plus'></i>
           Add Entry
         </button>
       </div>
@@ -1801,12 +1846,12 @@
           </select>
         </div>
         <div class="action-buttons">
-          <button class="action-btn btn-export" onclick="downloadCSV()">📥 Export</button>
-          <button class="action-btn btn-backup" onclick="downloadBackup()">💾 Backup</button>
-          <button class="action-btn btn-restore" onclick="document.getElementById('restoreFile').click()">📂
+          <button class="action-btn btn-export" onclick="downloadCSV()"><i class='bx bx-download'></i> Export</button>
+          <button class="action-btn btn-backup" onclick="downloadBackup()"><i class='bx bx-save'></i> Backup</button>
+          <button class="action-btn btn-restore" onclick="document.getElementById('restoreFile').click()"><i class='bx bx-folder-open'></i>
             Restore</button>
           <input type="file" id="restoreFile" accept=".json" style="display:none;" onchange="restoreBackup(event)">
-          <button class="action-btn btn-dark" onclick="toggleDarkMode()">🌙</button>
+          <button class="action-btn btn-dark" onclick="toggleDarkMode()"><i class='bx bx-moon'></i></button>
         </div>
       </div>
 
@@ -1815,7 +1860,7 @@
         <div class="stat-card income">
           <div class="stat-header">
             <span class="stat-label">Total Income</span>
-            <div class="stat-icon">💰</div>
+            <div class="stat-icon"><i class='bx bx-money'></i></div>
           </div>
           <div class="stat-value" id="total-income">0</div>
           <div class="stat-subtitle">PKR</div>
@@ -1823,7 +1868,7 @@
         <div class="stat-card expense">
           <div class="stat-header">
             <span class="stat-label">Total Expenses</span>
-            <div class="stat-icon">💸</div>
+            <div class="stat-icon"><i class='bx bx-credit-card'></i></div>
           </div>
           <div class="stat-value" id="total-expenses">0</div>
           <div class="stat-subtitle">PKR</div>
@@ -1831,7 +1876,7 @@
         <div class="stat-card balance">
           <div class="stat-header">
             <span class="stat-label">Net Balance</span>
-            <div class="stat-icon">📊</div>
+            <div class="stat-icon"><i class='bx bx-trending-up'></i></div>
           </div>
           <div class="stat-value" id="balance">0</div>
           <div class="stat-subtitle">PKR</div>
@@ -1839,7 +1884,7 @@
         <div class="stat-card entries">
           <div class="stat-header">
             <span class="stat-label">Total Entries</span>
-            <div class="stat-icon">📝</div>
+            <div class="stat-icon"><i class='bx bx-list-ul'></i></div>
           </div>
           <div class="stat-value" id="total-entries">0</div>
           <div class="stat-subtitle">Records</div>
@@ -1856,37 +1901,37 @@
         </div>
         <div class="summary-grid">
           <div class="summary-item">
-            <div class="summary-icon">💵</div>
+            <div class="summary-icon"><i class='bx bx-dollar'></i></div>
             <div class="summary-label">Avg. Income</div>
             <div class="summary-value" id="avg-income">0</div>
             <div class="summary-sub">per transaction</div>
           </div>
           <div class="summary-item">
-            <div class="summary-icon">📉</div>
+            <div class="summary-icon"><i class='bx bx-line-chart-down'></i></div>
             <div class="summary-label">Avg. Expense</div>
             <div class="summary-value" id="avg-expense">0</div>
             <div class="summary-sub">per transaction</div>
           </div>
           <div class="summary-item">
-            <div class="summary-icon">⚖️</div>
+            <div class="summary-icon"><i class='bx bx-scale'></i></div>
             <div class="summary-label">Savings Rate</div>
             <div class="summary-value" id="savings-rate">0%</div>
             <div class="summary-sub">income saved</div>
           </div>
           <div class="summary-item">
-            <div class="summary-icon">🗓️</div>
+            <div class="summary-icon"><i class='bx bx-calendar-event'></i></div>
             <div class="summary-label">Income Entries</div>
             <div class="summary-value" id="income-count">0</div>
             <div class="summary-sub">transactions</div>
           </div>
           <div class="summary-item">
-            <div class="summary-icon">📅</div>
+            <div class="summary-icon"><i class='bx bx-calendar'></i></div>
             <div class="summary-label">Expense Entries</div>
             <div class="summary-value" id="expense-count">0</div>
             <div class="summary-sub">transactions</div>
           </div>
           <div class="summary-item">
-            <div class="summary-icon">🕐</div>
+            <div class="summary-icon"><i class='bx bx-time'></i></div>
             <div class="summary-label">Last Activity</div>
             <div class="summary-value" id="last-activity">--</div>
             <div class="summary-sub">latest entry</div>
@@ -1914,7 +1959,7 @@
       <div class="data-section">
         <div class="table-header">
           <h2 class="section-title">
-            <span>📋</span>
+            <i class='bx bx-list-check'></i>
             All Transactions
           </h2>
         </div>
@@ -1998,12 +2043,12 @@
           <input type="number" id="amount" placeholder="Enter amount">
         </div>
         <div class="form-group">
-          <label>📎 Attachments <span style="color:#94a3b8;font-weight:400;">(any file type, multiple allowed)</span></label>
+          <label><i class='bx bx-paperclip'></i> Attachments <span style="color:var(--text-muted);font-weight:400;">(any file type, multiple allowed)</span></label>
           <div class="bill-upload-zone" id="billUploadZone" ondragover="billDragOver(event)"
             ondragleave="billDragLeave(event)" ondrop="billDrop(event)">
             <input type="file" id="billFileInput" multiple
               onchange="billFilesSelected(event)">
-            <div class="bill-upload-icon">📁</div>
+            <div class="bill-upload-icon"><i class='bx bx-upload'></i></div>
             <div class="bill-upload-text">Click to browse or drag &amp; drop files here</div>
           </div>
           <div class="bill-previews" id="billPreviews"></div>
@@ -2021,12 +2066,12 @@
   <div class="view-modal" id="viewModal">
     <div class="view-modal-content">
       <div class="view-modal-header">
-        <span class="view-modal-title">📋 Entry Details</span>
-        <button class="view-modal-close" onclick="closeViewModal()">✕</button>
+        <span class="view-modal-title"><i class='bx bx-detail'></i> Entry Details</span>
+        <button class="view-modal-close" onclick="closeViewModal()"><i class='bx bx-x'></i></button>
       </div>
       <div class="view-entry-details" id="viewEntryDetails"></div>
       <div class="view-bills-section">
-        <div class="view-bills-title">📎 Bill Attachments</div>
+        <div class="view-bills-title"><i class='bx bx-paperclip'></i> Bill Attachments</div>
         <div class="view-bills-grid" id="viewBillsGrid"></div>
       </div>
     </div>
@@ -2094,9 +2139,9 @@
       const toast = document.createElement('div');
       toast.className = `toast ${type}`;
       toast.innerHTML = `
-        <span class="toast-icon">${type === 'success' ? '✅' : '❌'}</span>
+        <span class="toast-icon">${type === 'success' ? "<i class='bx bx-check-circle'></i>" : "<i class='bx bx-x-circle'></i>"}</span>
         <span>${message}</span>
-        <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        <button class="toast-close" onclick="this.parentElement.remove()"><i class='bx bx-x'></i></button>
       `;
       container.appendChild(toast);
 
@@ -2340,12 +2385,12 @@
           const isDocURL = item.url && item.url.includes('/file/d/');
           const isImageExt = item.name.match(/\.(jpg|jpeg|png|gif|webp)$/i);
           thumbHtml = (isDocURL || !isImageExt)
-            ? `<span style="font-size:24px;">📄</span>`
-            : `<img src="${item.url}" onerror="this.parentElement.innerHTML='<span style=font-size:24px>📄</span>'" alt="bill">`;
+            ? `<span style="font-size:24px; color:var(--text-muted);"><i class='bx bxs-file-pdf'></i></span>`
+            : `<img src="${item.url}" onerror="this.parentElement.innerHTML='<span style=font-size:24px;color:var(--text-muted);><i class=bx bxs-file-pdf></i></span>'" alt="bill">`;
         } else if (item.file) {
           const isImage = item.file.type.startsWith('image/');
           if (!isImage) {
-            thumbHtml = `<span style="font-size:24px;">📄</span>`;
+            thumbHtml = `<span style="font-size:24px; color:var(--text-muted);"><i class='bx bxs-file-pdf'></i></span>`;
           } else {
             // Generate local blob preview for images
             const objectUrl = URL.createObjectURL(item.file);
@@ -2378,7 +2423,7 @@
 
       if (newFiles.length === 0) return existingUrls;
 
-      showToast('Uploading bills… ⏳', 'success', 8000);
+      showToast('Uploading bills...', 'success', 8000);
 
       const filesPayload = await Promise.all(newFiles.map(async (item) => ({
         name: item.file.name,
@@ -2428,11 +2473,11 @@
         const detailsEl = document.getElementById('viewEntryDetails');
         detailsEl.innerHTML = withBills.length > 0
           ? `<div style="grid-column:1/-1;padding:4px 0;">
-               <p style="font-size:13px;color:#64748b;margin-bottom:10px;">
+               <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">
                  ${withBills.length} ${withBills.length === 1 ? 'entry' : 'entries'} with bil(s). Click a bill below to open.
                </p>
              </div>`
-          : `<div style="grid-column:1/-1;"><p style="color:#94a3b8;font-size:14px;">No bill attachments found.</p></div>`;
+          : `<div style="grid-column:1/-1;"><p style="color:var(--text-muted);font-size:14px;">No bill attachments found.</p></div>`;
         const gridEl = document.getElementById('viewBillsGrid');
         gridEl.innerHTML = '';
         withBills.forEach(row => {
@@ -2475,7 +2520,7 @@
       const billUrls = r[6] ? String(r[6]).split(',').map(u => u.trim()).filter(Boolean) : [];
 
       if (billUrls.length === 0) {
-        gridEl.innerHTML = '<div class="view-bill-no-bills">📎 No bill attachments for this entry.</div>';
+        gridEl.innerHTML = '<div class="view-bill-no-bills"><i class="bx bx-paperclip"></i> No bill attachments for this entry.</div>';
       } else {
         gridEl.innerHTML = '';
         billUrls.forEach((url, i) => {
@@ -2491,15 +2536,15 @@
       card.className = 'view-bill-card';
       const isDocURL = url.includes('/file/d/');
       const body = isDocURL
-        ? `<div class="view-bill-pdf">📄</div>`
-        : `<img src="${url}" alt="${label}" onerror="this.parentElement.innerHTML='<div class=view-bill-pdf>📄</div>'">`;
+        ? `<div class="view-bill-pdf"><i class='bx bxs-file-pdf'></i></div>`
+        : `<img src="${url}" alt="${label}" onerror="this.parentElement.innerHTML='<div class=view-bill-pdf><i class=\\'bx bxs-file-pdf\\'></i></div>'">`;
       card.innerHTML = `
         <a href="${url}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">
           ${body}
         </a>
         <div class="view-bill-card-footer">
           <a href="${url}" target="_blank" rel="noopener" title="${label}">${label}</a>
-          <span style="font-size:16px;">🔗</span>
+          <span style="font-size:16px; color:var(--text-muted);"><i class='bx bx-link-external'></i></span>
         </div>`;
       return card;
     }
@@ -2699,14 +2744,14 @@
         const billCount = billUrls.length;
 
         const billCell = billCount > 0
-          ? `<span class="bill-badge" onclick='openViewModal(${JSON.stringify(r)})' title="View bills">📎 ${billCount}</span>`
-          : `<span style="color:#cbd5e1;font-size:12px;">—</span>`;
+          ? `<span class="bill-badge" onclick='openViewModal(${JSON.stringify(r)})' title="View bills"><i class='bx bx-paperclip'></i> ${billCount}</span>`
+          : `<span style="color:var(--text-muted);font-size:12px;">—</span>`;
 
         const actionsHtml = isViewer
-          ? `<button class="view-btn" onclick='openViewModal(${JSON.stringify(r)})'>👁 View</button>`
-          : `<button class="view-btn" onclick='openViewModal(${JSON.stringify(r)})'>👁 View</button>
-             <button class="edit-btn" onclick='edit(${JSON.stringify(r)})'>Edit</button>
-             <button class="delete-btn" onclick='del(${r[0]})'>Delete</button>`;
+          ? `<button class="view-btn" onclick='openViewModal(${JSON.stringify(r)})'><i class='bx bx-show'></i> View</button>`
+          : `<button class="view-btn" onclick='openViewModal(${JSON.stringify(r)})'><i class='bx bx-show'></i> View</button>
+             <button class="edit-btn" onclick='edit(${JSON.stringify(r)})'><i class='bx bx-edit'></i> Edit</button>
+             <button class="delete-btn" onclick='del(${r[0]})'><i class='bx bx-trash'></i> Delete</button>`;
 
         html += `
           <tr>
@@ -2871,12 +2916,12 @@
         if (idx > 0) {
           allData[idx] = [editingId, dateVal, typeVal, givenFromVal, descVal, amountValue, billUrls.join(',')];
         }
-        showToast('Entry updated! ✨', 'success');
+        showToast('Entry updated successfully!', 'success');
       } else {
         tempIdCounter++;
         const tempId = 'temp_' + tempIdCounter;
         allData.push([tempId, dateVal, typeVal, givenFromVal, descVal, amountValue, billUrls.join(',')]);
-        showToast('Entry saved! 🎉', 'success');
+        showToast('Entry saved successfully!', 'success');
       }
 
       saveToLocalStorage(allData);
@@ -2954,7 +2999,7 @@
         allData.splice(idx, 1);
         saveToLocalStorage(allData);
         processData(allData);
-        showToast('Entry deleted! 🗑️', 'success');
+        showToast('Entry deleted successfully!', 'success');
       }
 
       fetch(API, {
@@ -3019,7 +3064,7 @@
             method: "POST",
             body: JSON.stringify({ action: "restore", data })
           }).then(() => {
-            showToast('Data restored! ✅', 'success');
+            showToast('Data restored successfully!', 'success');
           });
         } catch (err) {
           showToast('Invalid backup file', 'error');

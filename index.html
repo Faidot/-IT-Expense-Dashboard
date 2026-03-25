@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IT Expense Dashboard</title>
-   <!-- Online Favicon -->
+  <!-- Online Favicon -->
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/10106/10106199.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
@@ -818,6 +818,348 @@
       background: #fecaca;
     }
 
+    .view-btn {
+      background: #f3e8ff;
+      color: #7c3aed;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-btn:hover {
+      background: #e9d5ff;
+    }
+
+    /* ==================== BILL UPLOAD ==================== */
+    .bill-upload-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #f8fafc;
+      position: relative;
+    }
+
+    .bill-upload-zone:hover,
+    .bill-upload-zone.dragover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .bill-upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bill-upload-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .bill-upload-text {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .bill-previews {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .bill-preview-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #334155;
+      max-width: 200px;
+    }
+
+    .bill-preview-item img {
+      width: 36px;
+      height: 36px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .bill-preview-item .bill-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .bill-preview-remove {
+      background: #fecaca;
+      color: #dc2626;
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .bill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f3e8ff;
+      color: #7c3aed;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .bill-badge:hover {
+      background: #e9d5ff;
+    }
+
+    /* ==================== VIEW ENTRY MODAL ==================== */
+    .view-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2500;
+    }
+
+    .view-modal.active {
+      display: flex;
+    }
+
+    .view-modal-content {
+      background: white;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+      animation: modalIn 0.3s ease;
+    }
+
+    .view-modal-header {
+      padding: 22px 28px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .view-modal-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .view-modal-close {
+      background: #f1f5f9;
+      border: none;
+      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+
+    .view-modal-close:hover {
+      background: #e2e8f0;
+    }
+
+    .view-entry-details {
+      padding: 20px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .view-detail-item {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .view-detail-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .view-detail-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .view-bills-section {
+      padding: 20px 28px 28px;
+    }
+
+    .view-bills-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .view-bills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .view-bill-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+
+    .view-bill-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .view-bill-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .view-bill-card-footer {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+    }
+
+    .view-bill-card-footer a {
+      color: #3b82f6;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .view-bill-card-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .view-bill-pdf {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 160px;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      color: #dc2626;
+      font-size: 48px;
+    }
+
+    .view-bill-no-bills {
+      text-align: center;
+      padding: 40px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Dark mode additions */
+    body.dark-mode .view-modal-content {
+      background: #1e293b;
+    }
+
+    body.dark-mode .view-modal-header {
+      border-color: #334155;
+    }
+
+    body.dark-mode .view-modal-title {
+      color: #f1f5f9;
+    }
+
+    body.dark-mode .view-detail-item {
+      background: #334155;
+    }
+
+    body.dark-mode .view-detail-value {
+      color: #f1f5f9;
+    }
+
+    body.dark-mode .view-bills-title {
+      color: #f1f5f9;
+    }
+
+    body.dark-mode .view-bill-card {
+      border-color: #475569;
+    }
+
+    body.dark-mode .view-bill-card-footer {
+      background: #0f172a;
+    }
+
+    body.dark-mode .bill-upload-zone {
+      background: #334155;
+      border-color: #475569;
+    }
+
+    body.dark-mode .bill-preview-item {
+      background: #334155;
+      border-color: #475569;
+      color: #f1f5f9;
+    }
+
     /* ==================== PAGINATION ==================== */
     .pagination {
       display: flex;
@@ -1404,6 +1746,10 @@
         <span class="nav-item-icon">⚙️</span>
         <span>Settings</span>
       </div>
+      <div class="nav-item" onclick="openViewModal(null,'nav')">
+        <span class="nav-item-icon">📎</span>
+        <span>View Bills</span>
+      </div>
     </nav>
     <div class="sidebar-footer">
       <div class="user-info">
@@ -1578,9 +1924,10 @@
               <tr>
                 <th class="sortable" onclick="sortTable(1)">Date</th>
                 <th class="sortable" onclick="sortTable(2)">Type</th>
-                <th></th>
+                <th>Source</th>
                 <th>Description</th>
                 <th class="sortable" onclick="sortTable(5)">Amount</th>
+                <th>Bills</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -1650,11 +1997,37 @@
           <label>Amount</label>
           <input type="number" id="amount" placeholder="Enter amount">
         </div>
+        <div class="form-group">
+          <label>📎 Attachments <span style="color:#94a3b8;font-weight:400;">(any file type, multiple allowed)</span></label>
+          <div class="bill-upload-zone" id="billUploadZone" ondragover="billDragOver(event)"
+            ondragleave="billDragLeave(event)" ondrop="billDrop(event)">
+            <input type="file" id="billFileInput" multiple
+              onchange="billFilesSelected(event)">
+            <div class="bill-upload-icon">📁</div>
+            <div class="bill-upload-text">Click to browse or drag &amp; drop files here</div>
+          </div>
+          <div class="bill-previews" id="billPreviews"></div>
+        </div>
       </div>
       <div class="modal-actions">
         <button class="btn-save" onclick="save(false)">Save Entry</button>
-        <button class="btn-save-more" onclick="save(true)">Save & Add More</button>
+        <button class="btn-save-more" onclick="save(true)">Save &amp; Add More</button>
         <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Entry Modal -->
+  <div class="view-modal" id="viewModal">
+    <div class="view-modal-content">
+      <div class="view-modal-header">
+        <span class="view-modal-title">📋 Entry Details</span>
+        <button class="view-modal-close" onclick="closeViewModal()">✕</button>
+      </div>
+      <div class="view-entry-details" id="viewEntryDetails"></div>
+      <div class="view-bills-section">
+        <div class="view-bills-title">📎 Bill Attachments</div>
+        <div class="view-bills-grid" id="viewBillsGrid"></div>
       </div>
     </div>
   </div>
@@ -1708,6 +2081,10 @@
     let tempIdCounter = 0;
     let pendingDeletes = new Set();
     let skipSyncUntil = 0;
+
+    // ── Bill attachment state ──────────────────────────────────────────────
+    // Each item: { file: File|null, url: string|null, name: string, isExisting: bool }
+    let billItems = [];
 
     // Toast notification
     function showToast(message, type = 'success', duration = 3000) {
@@ -1860,7 +2237,7 @@
       }
     });
 
-    const API = "https://script.google.com/macros/s/AKfycbyzkOEEL6hZOjzA7OkjwhW-R2KT6iPTH09HVn-0nvH0aOYHmRWaqHbhUvumd388sP6LaA/exec";
+    const API = "https://script.google.com/macros/s/AKfycbxAcnb_dMXJsWVny8OnNOgeX0wT5Pgk1IQUfzwGZOwMnWn5UWtmxyudPMIAd6wUoPTXng/exec";
     const STORAGE_KEY = "expense_data";
     const LAST_SYNC_KEY = "last_sync_time";
 
@@ -1925,8 +2302,108 @@
       }
     }
 
+    // ── Bill upload helpers ────────────────────────────────────────────────
+    function billDragOver(e) {
+      e.preventDefault();
+      document.getElementById('billUploadZone').classList.add('dragover');
+    }
+    function billDragLeave(e) {
+      document.getElementById('billUploadZone').classList.remove('dragover');
+    }
+    function billDrop(e) {
+      e.preventDefault();
+      document.getElementById('billUploadZone').classList.remove('dragover');
+      addBillFiles(Array.from(e.dataTransfer.files));
+    }
+    function billFilesSelected(e) {
+      addBillFiles(Array.from(e.target.files));
+      e.target.value = '';
+    }
+    function addBillFiles(files) {
+      files.forEach(file => {
+        billItems.push({ file, url: null, name: file.name, isExisting: false });
+      });
+      renderBillPreviews();
+    }
+    function removeBillItem(idx) {
+      billItems.splice(idx, 1);
+      renderBillPreviews();
+    }
+    function renderBillPreviews() {
+      const container = document.getElementById('billPreviews');
+      if (!container) return;
+      if (billItems.length === 0) { container.innerHTML = ''; return; }
+      container.innerHTML = billItems.map((item, idx) => {
+        let thumbHtml = '';
+        if (item.isExisting) {
+          // Existing Drive URL
+          const isDocURL = item.url && item.url.includes('/file/d/');
+          const isImageExt = item.name.match(/\.(jpg|jpeg|png|gif|webp)$/i);
+          thumbHtml = (isDocURL || !isImageExt)
+            ? `<span style="font-size:24px;">📄</span>`
+            : `<img src="${item.url}" onerror="this.parentElement.innerHTML='<span style=font-size:24px>📄</span>'" alt="bill">`;
+        } else if (item.file) {
+          const isImage = item.file.type.startsWith('image/');
+          if (!isImage) {
+            thumbHtml = `<span style="font-size:24px;">📄</span>`;
+          } else {
+            // Generate local blob preview for images
+            const objectUrl = URL.createObjectURL(item.file);
+            thumbHtml = `<img src="${objectUrl}" alt="preview">`;
+          }
+        }
+        const displayName = item.name.length > 18 ? item.name.substring(0, 16) + '...' : item.name;
+        return `<div class="bill-preview-item">
+          ${thumbHtml}
+          <span class="bill-name" title="${item.name}">${displayName}</span>
+          <button class="bill-preview-remove" onclick="removeBillItem(${idx})" title="Remove">×</button>
+        </div>`;
+      }).join('');
+    }
+
+    // Convert File to base64
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Upload new files to Google Drive via GAS, return all URLs (existing + new)
+    async function uploadBillsToGDrive() {
+      const newFiles = billItems.filter(b => !b.isExisting && b.file);
+      const existingUrls = billItems.filter(b => b.isExisting).map(b => b.url);
+
+      if (newFiles.length === 0) return existingUrls;
+
+      showToast('Uploading bills… ⏳', 'success', 8000);
+
+      const filesPayload = await Promise.all(newFiles.map(async (item) => ({
+        name: item.file.name,
+        mimeType: item.file.type || 'application/octet-stream',
+        base64: await fileToBase64(item.file)
+      })));
+
+      const resp = await fetch(API, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'uploadBill', files: filesPayload })
+      });
+      const result = await resp.json();
+
+      if (result.status === 'success') {
+        return [...existingUrls, ...result.urls];
+      } else {
+        showToast('Bill upload failed: ' + (result.message || ''), 'error');
+        return existingUrls;
+      }
+    }
+
     function openModal() {
       isEditing = false;
+      billItems = [];
+      renderBillPreviews();
       document.getElementById('modal').classList.add('active');
       document.getElementById('id').value = '';
       document.getElementById('date').value = '';
@@ -1940,6 +2417,95 @@
 
     function closeModal() {
       document.getElementById('modal').classList.remove('active');
+    }
+
+
+    // ── View Entry Modal ───────────────────────────────────────────────────
+    function openViewModal(r, source) {
+      if (source === 'nav') {
+        // Opened from sidebar: show a list of all entries with bills
+        const withBills = currentData.filter(row => row[6] && String(row[6]).trim() !== '');
+        const detailsEl = document.getElementById('viewEntryDetails');
+        detailsEl.innerHTML = withBills.length > 0
+          ? `<div style="grid-column:1/-1;padding:4px 0;">
+               <p style="font-size:13px;color:#64748b;margin-bottom:10px;">
+                 ${withBills.length} ${withBills.length === 1 ? 'entry' : 'entries'} with bil(s). Click a bill below to open.
+               </p>
+             </div>`
+          : `<div style="grid-column:1/-1;"><p style="color:#94a3b8;font-size:14px;">No bill attachments found.</p></div>`;
+        const gridEl = document.getElementById('viewBillsGrid');
+        gridEl.innerHTML = '';
+        withBills.forEach(row => {
+          const urls = String(row[6]).split(',').map(u => u.trim()).filter(Boolean);
+          urls.forEach((url, i) => {
+            gridEl.appendChild(buildBillCard(url, `${formatDate(row[1])} – Bill ${i + 1}`));
+          });
+        });
+        document.getElementById('viewModal').classList.add('active');
+        return;
+      }
+
+      // Opened from table row View button
+      const detailsEl = document.getElementById('viewEntryDetails');
+      const isExpense = r[2] === 'Expense';
+      const amountFmt = (isExpense ? '-' : '+') + formatNumber(Math.abs(Number(r[5])));
+      detailsEl.innerHTML = `
+        <div class="view-detail-item">
+          <div class="view-detail-label">Date</div>
+          <div class="view-detail-value">${formatDate(r[1])}</div>
+        </div>
+        <div class="view-detail-item">
+          <div class="view-detail-label">Type</div>
+          <div class="view-detail-value">${r[2]}</div>
+        </div>
+        <div class="view-detail-item">
+          <div class="view-detail-label">Source</div>
+          <div class="view-detail-value">${r[3] || '—'}</div>
+        </div>
+        <div class="view-detail-item">
+          <div class="view-detail-label">Description</div>
+          <div class="view-detail-value">${r[4] || '—'}</div>
+        </div>
+        <div class="view-detail-item">
+          <div class="view-detail-label">Amount</div>
+          <div class="view-detail-value" style="color:${isExpense ? '#ef4444' : '#10b981'}">${amountFmt} PKR</div>
+        </div>`;
+
+      const gridEl = document.getElementById('viewBillsGrid');
+      const billUrls = r[6] ? String(r[6]).split(',').map(u => u.trim()).filter(Boolean) : [];
+
+      if (billUrls.length === 0) {
+        gridEl.innerHTML = '<div class="view-bill-no-bills">📎 No bill attachments for this entry.</div>';
+      } else {
+        gridEl.innerHTML = '';
+        billUrls.forEach((url, i) => {
+          gridEl.appendChild(buildBillCard(url, 'Bill ' + (i + 1)));
+        });
+      }
+
+      document.getElementById('viewModal').classList.add('active');
+    }
+
+    function buildBillCard(url, label) {
+      const card = document.createElement('div');
+      card.className = 'view-bill-card';
+      const isDocURL = url.includes('/file/d/');
+      const body = isDocURL
+        ? `<div class="view-bill-pdf">📄</div>`
+        : `<img src="${url}" alt="${label}" onerror="this.parentElement.innerHTML='<div class=view-bill-pdf>📄</div>'">`;
+      card.innerHTML = `
+        <a href="${url}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">
+          ${body}
+        </a>
+        <div class="view-bill-card-footer">
+          <a href="${url}" target="_blank" rel="noopener" title="${label}">${label}</a>
+          <span style="font-size:16px;">🔗</span>
+        </div>`;
+      return card;
+    }
+
+    function closeViewModal() {
+      document.getElementById('viewModal').classList.remove('active');
     }
 
     function openSettingsModal() {
@@ -2129,10 +2695,19 @@
       pageData.forEach(r => {
         const amount = Number(r[5]);
         const isExpense = r[2] === 'Expense';
+        const billUrls = r[6] ? String(r[6]).split(',').map(u => u.trim()).filter(Boolean) : [];
+        const billCount = billUrls.length;
+
+        const billCell = billCount > 0
+          ? `<span class="bill-badge" onclick='openViewModal(${JSON.stringify(r)})' title="View bills">📎 ${billCount}</span>`
+          : `<span style="color:#cbd5e1;font-size:12px;">—</span>`;
+
         const actionsHtml = isViewer
-          ? `<span style="color: #94a3b8; font-size: 12px;">View Only</span>`
-          : `<button class="edit-btn" onclick='edit(${JSON.stringify(r)})'>Edit</button>
+          ? `<button class="view-btn" onclick='openViewModal(${JSON.stringify(r)})'>👁 View</button>`
+          : `<button class="view-btn" onclick='openViewModal(${JSON.stringify(r)})'>👁 View</button>
+             <button class="edit-btn" onclick='edit(${JSON.stringify(r)})'>Edit</button>
              <button class="delete-btn" onclick='del(${r[0]})'>Delete</button>`;
+
         html += `
           <tr>
             <td>${formatDate(r[1])}</td>
@@ -2140,6 +2715,7 @@
             <td><span class="source-badge">${r[3] || 'N/A'}</span></td>
             <td>${r[4]}</td>
             <td class="amount ${isExpense ? 'negative' : 'positive'}">${isExpense ? '-' : '+'}${formatNumber(Math.abs(amount))}</td>
+            <td>${billCell}</td>
             <td>
               <div class="actions-cell">
                 ${actionsHtml}
@@ -2148,7 +2724,7 @@
           </tr>`;
       });
 
-      document.getElementById('rows').innerHTML = html || '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">No entries found</td></tr>';
+      document.getElementById('rows').innerHTML = html || '<tr><td colspan="7" style="text-align:center; color:#94a3b8;">No entries found</td></tr>';
 
       const totalPages = Math.ceil(data.length / entriesPerPage) || 1;
       document.getElementById('paginationInfo').innerText = `Showing ${data.length > 0 ? start + 1 : 0}-${Math.min(end, data.length)} of ${data.length}`;
@@ -2156,6 +2732,7 @@
       document.getElementById('prevBtn').disabled = currentPage === 1;
       document.getElementById('nextBtn').disabled = currentPage >= totalPages;
     }
+
 
     function previousPage() {
       if (currentPage > 1) {
@@ -2246,7 +2823,7 @@
       });
     }
 
-    function save(addMore) {
+    async function save(addMore) {
       const dateVal = document.getElementById('date').value;
       const typeVal = document.getElementById('type').value;
       const givenFromVal = document.getElementById('givenFrom').value;
@@ -2267,6 +2844,15 @@
       const editingId = document.getElementById('id').value;
       const isEditAction = !!editingId;
 
+      // Upload any new bill files first
+      let billUrls = [];
+      try {
+        billUrls = await uploadBillsToGDrive();
+      } catch (err) {
+        console.error('Bill upload error:', err);
+        showToast('Bill upload error – saving without bills', 'error');
+      }
+
       const payload = {
         action: isEditAction ? "edit" : "add",
         id: editingId,
@@ -2274,7 +2860,8 @@
         type: typeVal,
         givenFrom: givenFromVal,
         desc: descVal,
-        amount: amountValue
+        amount: amountValue,
+        billUrls
       };
 
       const allData = getFromLocalStorage() || [];
@@ -2282,13 +2869,13 @@
       if (isEditAction) {
         const idx = allData.findIndex(r => r && r[0] == editingId);
         if (idx > 0) {
-          allData[idx] = [editingId, dateVal, typeVal, givenFromVal, descVal, amountValue];
+          allData[idx] = [editingId, dateVal, typeVal, givenFromVal, descVal, amountValue, billUrls.join(',')];
         }
         showToast('Entry updated! ✨', 'success');
       } else {
         tempIdCounter++;
         const tempId = 'temp_' + tempIdCounter;
-        allData.push([tempId, dateVal, typeVal, givenFromVal, descVal, amountValue]);
+        allData.push([tempId, dateVal, typeVal, givenFromVal, descVal, amountValue, billUrls.join(',')]);
         showToast('Entry saved! 🎉', 'success');
       }
 
@@ -2297,11 +2884,13 @@
       processData(normalizedData);
 
       if (addMore) {
+        billItems = [];
         document.getElementById('id').value = '';
         document.getElementById('type').value = 'Amount Given';
         document.getElementById('givenFrom').value = '';
         document.getElementById('desc').value = '';
         document.getElementById('amount').value = '';
+        renderBillPreviews();
         document.getElementById('desc').focus();
         toggleGivenFrom();
       } else {
@@ -2329,8 +2918,19 @@
       });
     }
 
+
     function edit(r) {
       isEditing = true;
+      // Pre-populate bill items from existing URLs
+      billItems = [];
+      if (r[6]) {
+        String(r[6]).split(',').map(u => u.trim()).filter(Boolean).forEach(url => {
+          const name = url.split('/').pop().split('?')[0] || 'Bill';
+          billItems.push({ file: null, url, name, isExisting: true });
+        });
+      }
+      renderBillPreviews();
+
       document.getElementById('id').value = r[0];
       document.getElementById('date').value = formatDate(r[1]);
       document.getElementById('type').value = r[2];
@@ -2341,6 +2941,7 @@
       document.getElementById('modal').classList.add('active');
       toggleGivenFrom();
     }
+
 
     function del(id) {
       if (!confirm('Delete this entry?')) return;
@@ -2376,9 +2977,10 @@
     }
 
     function downloadCSV() {
-      let csv = 'Date,Type,Source,Description,Amount\n';
+      let csv = 'Date,Type,Source,Description,Amount,Bill URLs\n';
       currentData.forEach(r => {
-        csv += `${formatDate(r[1])},${r[2]},${r[3] || ''},${r[4]},${r[5]}\n`;
+        const billUrls = r[6] ? String(r[6]).replace(/,/g, ' | ') : '';
+        csv += `${formatDate(r[1])},${r[2]},${r[3] || ''},${r[4]},${r[5]},${billUrls}\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv' });
       const url = URL.createObjectURL(blob);
@@ -2388,6 +2990,7 @@
       a.click();
       showToast('CSV downloaded!', 'success');
     }
+
 
     function downloadBackup() {
       const data = getFromLocalStorage();
@@ -2447,8 +3050,9 @@
       if (e.key === 'Escape') {
         closeModal();
         closeSettingsModal();
+        closeViewModal();
       }
-      if (e.key === 'n' && !document.querySelector('.modal.active') && document.activeElement.tagName !== 'INPUT') {
+      if (e.key === 'n' && !document.querySelector('.modal.active') && !document.getElementById('viewModal').classList.contains('active') && document.activeElement.tagName !== 'INPUT') {
         openModal();
       }
     });
@@ -2460,4 +3064,3 @@
 </body>
 
 </html>
-

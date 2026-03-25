@@ -12,7 +12,7 @@ This guide covers deploying the Google Apps Script backend and configuring the d
 2. Name the first sheet: `Expenses`
 3. Add headers in row 1:
    ```
-   ID | Date | Type | GivenFrom | Description | Amount
+   ID | Date | Type | GivenFrom | Description | Amount | Bill URLs
    ```
 
 ---
@@ -60,11 +60,16 @@ Clear browser localStorage first:
 
 ---
 
-## New Features (v2.0)
+## New Features (v3.0)
+
+### 📎 Bill Attachments
+- **Upload Anything:** Supports images, PDFs, Word docs, and more.
+- **Drive Integration:** Files are securely stored in a "Bills" folder auto-created in your root Google Drive.
+- **Preview Modal:** Quickly view bills directly from the dashboard.
 
 ### Role-Based Authentication
-- **Admin**: Full CRUD access, backup/restore, settings
-- **Viewer**: View, filter, search, export only
+- **Admin**: Full CRUD access, backup/restore, settings, add/edit bills
+- **Viewer**: View, filter, search, export, view bills only
 
 ### Session Expiration
 - Sessions expire after **1 hour**

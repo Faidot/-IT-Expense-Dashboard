@@ -25,8 +25,9 @@ A modern, professional expense tracking application with role-based access, real
 
 ### 📊 Data Features
 - Add/Edit/Delete transactions (Admin only)
+- **Bill Attachments**: Upload receipts/bills (any file type) stored safely in your Google Drive
 - Real-time filtering by date, type, and search
-- CSV export and JSON backup/restore
+- CSV export (with Bill URLs) and JSON backup/restore
 - Auto-sync with Google Sheets (every 30 seconds)
 - Offline-first with localStorage caching
 
@@ -42,7 +43,6 @@ A modern, professional expense tracking application with role-based access, real
 
 1. **Open** `dashboard.html` in any modern browser
 2. **Login** with:
-   - Admin: `ABC!123` (full access)
    - Viewer: `password123` (read-only)
 3. **Start tracking** your expenses!
 
@@ -89,6 +89,7 @@ const API = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
 | Feature | Admin | Viewer |
 |---------|-------|--------|
 | View data | ✅ | ✅ |
+| View Bills | ✅ | ✅ |
 | Filter/Search | ✅ | ✅ |
 | Export CSV | ✅ | ✅ |
 | Dark mode | ✅ | ✅ |
